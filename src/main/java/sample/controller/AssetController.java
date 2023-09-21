@@ -28,16 +28,38 @@ import sample.usecase.AssetService;
 /**
  * API controller of the asset domain.
  */
+
+
 @RestController
+/**
+ * @RequestMappingを書くことで一括でルーティングができる
+ */
 @RequestMapping("/asset")
+/**
+ * コンストラクタを使う場合は「@RequiredArgsConstructor」をクラスに付けて挿入してもらいたいフィールドをfinalで宣言する
+ */
 @RequiredArgsConstructor
 public class AssetController {
+    /**
+     * UseCase層のクラスをfinalで宣言する
+     */
     private final AssetService service;
-
+    /**
+     * @GetMappingや@PostMappingを書くことでルーティングができる
+     */
     @GetMapping("/cio/unprocessedOut")
     public List<UserCashOut> findUnprocessedCashOut() {
+        /**
+         * stream()はコレクションの要素を1つずつ取り出して処理う宣言を行う
+         */
         return service.findUnprocessedCashOut().stream()
+                /**
+                 * map()はインプット要素（List<CashInOut>）を1つずつ取り出してアウトプット（List<UserCashOut>）へ詰める処理を行う
+                 */
                 .map(UserCashOut::of)
+                /**
+                 * stream型になっているため、List型に戻す
+                 */
                 .toList();
     }
 
