@@ -23,7 +23,7 @@ import sample.context.Repository;
  */
 @Setter
 public abstract class OrmRepository implements Repository {
-
+// DIコンテナからインスタンスを注入するためのアノテーション
     @Autowired
     private DomainHelper dh;
 

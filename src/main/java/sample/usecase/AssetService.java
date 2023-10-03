@@ -35,7 +35,8 @@ public class AssetService {
             return CashInOut.findUnprocessed(rep, accId);
         });
     }
-
+// actorで呼び出しているのはリポジトリのdhメソッドをoverrideされたもの
+// actorを呼び出し、メモリからactorを取得している
     private Actor actor() {
         return rep.dh().actor();
     }

@@ -20,6 +20,8 @@ public class ActorSession {
      * Return an effective actor. When You are not related, an anonymous is
      * returned.
      */
+// ThreadLocalとは、スレッド（リクエスト）毎に共有されずメモリに格納できる変数
+// ThreadLocalを使っているので、actorLocalに値が入っていない場合はActor.Anonymousを返す
     public static Actor actor() {
         Actor actor = actorLocal.get();
         return actor != null ? actor : Actor.Anonymous;
